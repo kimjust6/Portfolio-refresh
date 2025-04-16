@@ -1,3 +1,3 @@
 export default function Home() {
-    return <></>;
+    return <div className="flex bg-orange-50">test</div>;
 }
