@@ -4,8 +4,10 @@ import { links } from "@/src/lib/data";
 import clsx from "clsx";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
+import { useState } from "react";
 
 const Navigation = () => {
+    const [activeSection, setActiveSection] = useState("Home");
     // const { activeSection, setActiveSection, setTimeOfLastClick } =
     //     useActiveSection();
 
@@ -27,26 +29,23 @@ const Navigation = () => {
                                 href={link.hash}
                                 data-text={link.name}
                                 className={clsx(
-                                    "my_navbar text-zinc-9500 data-text-title mx-2 py-1 text-gray-700 opacity-100 transition-all select-none hover:font-semibold hover:text-gray-950 dark:text-gray-50"
-                                    // {
-                                    //     "font-semibold text-gray-950":
-                                    //         activeSection === link.name,
-                                    // }
+                                    "my_navbar text-zinc-9500 data-text-title mx-2 py-1 text-gray-700 opacity-100 transition-all select-none hover:font-semibold hover:text-gray-950 dark:text-gray-50",
+                                    {
+                                        "font-semibold text-gray-950":
+                                            activeSection === link.name,
+                                    }
                                 )}
-                                // onClick={() => {
-                                //     setActiveSection(link.name);
-                                //     const time = Date.now();
-                                //     setTimeOfLastClick(time);
-                                // }}
+                                onClick={() => {
+                                    setActiveSection(link.name);
+                                    // const time = Date.now();
+                                    // setTimeOfLastClick(time);
+                                }}
                             >
                                 {link.name}
 
-                                {/* {link.name === activeSection && (
-                                    <div
-
-                                        className="absolute inset-0 -z-10 rounded-lg border border-gray-600 bg-amber-100 dark:bg-gray-900 dark:text-yellow-200"
-                                    ></div>
-                                )} */}
+                                {link.name === activeSection && (
+                                    <div className="absolute inset-0 -z-10 rounded-lg border border-gray-600 bg-amber-100 dark:bg-gray-900 dark:text-yellow-200"></div>
+                                )}
                             </Link>
                         </li>
                     );
